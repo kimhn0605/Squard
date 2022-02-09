@@ -1,6 +1,8 @@
+from statistics import mode
 from django.db import models
 
 class User(models.Model):
+    user_image = models.ImageField(blank=True, verbose_name='프로필 사진')
     user_id = models.CharField(max_length=32, unique=True, verbose_name='유저 아이디')
     user_pw = models.CharField(max_length=128, verbose_name='유저 비밀번호')
     user_name = models.CharField(max_length=16, unique=True, verbose_name='유저 이름')

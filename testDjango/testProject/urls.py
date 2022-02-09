@@ -1,3 +1,4 @@
+from xml.dom.minidom import Document
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
@@ -12,7 +13,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url="/home/", permanent=True)),
     path('user/', include('user.urls')),
     path('board/', include('board.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

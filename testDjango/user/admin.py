@@ -4,6 +4,7 @@ from .models import User
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     list_display = (
+        'user_image',
         'user_id',
         # 'user_pw',
         'user_name',
@@ -12,6 +13,7 @@ class UserAdmin(admin.ModelAdmin):
     )
 
     list_display_links = (
+        'user_image',
         'user_id',
         # 'user_pw',
         'user_name',

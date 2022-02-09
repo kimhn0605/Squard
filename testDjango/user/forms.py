@@ -3,6 +3,18 @@ from .models import User
 from argon2 import PasswordHasher, exceptions
 
 class RegisterForm(forms.ModelForm):
+    user_image = forms.ImageField(
+        label='프로필 사진',
+        required=True,
+        widget=forms.FileInput(
+            attrs={
+                'class' : 'user-imgae',
+                'placeholder' : '프로필 사진'
+            }
+        ),
+        error_messages={
+        'unique' : '이미지를 선택해주세요.'}
+    )
     user_id = forms.CharField(
         label='아이디',
         required=True,
@@ -78,6 +90,8 @@ class RegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
+            'user_image',
+            'user_image',
             'user_id',
             'user_pw',
             'user_name',
@@ -87,6 +101,7 @@ class RegisterForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
 
+        user_image = cleaned_data.get('user_image', '')
         user_id = cleaned_data.get('user_id', '')
         user_pw = cleaned_data.get('user_pw', '')
         user_pw_confirm = cleaned_data.get('user_pw_confirm', '')
@@ -100,6 +115,7 @@ class RegisterForm(forms.ModelForm):
         elif 8 > len(user_pw):
             return self.add_error('user_pw', '비밀번호는 8자 이상으로 적어주세요.')
         else:
+            self.user_image = user_image
             self.user_id = user_id
             self.user_pw = PasswordHasher().hash(user_pw)
             self.user_pw_confirm = user_pw_confirm

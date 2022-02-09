@@ -11,9 +11,10 @@ def register(request):
         return render(request, 'user/register.html', context)
 
     elif request.method == 'POST':
-        register_form = RegisterForm(request.POST)
+        register_form = RegisterForm(request.POST, request.FILES)
         if register_form.is_valid():
             user = User(
+                user_image = register_form.user_image,
                 user_id = register_form.user_id,
                 user_pw = register_form.user_pw,
                 user_name = register_form.user_name,
