@@ -13,3 +13,6 @@ def hello(request):
         context['login_session'] = True
 
     return render(request, 'home/index.html', context)
+
+def dice(request):
+    return render(request, 'home/dice.html')
