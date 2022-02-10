@@ -24,7 +24,10 @@ def mypage(request):
 
     login_session = request.session.get('login_session', '')
     context = { 'login_session': login_session }
-
+    
+    user = User.user_image
+    context['user'] = user
+    
     if request.method == 'GET':
         return render(request, 'home/mypage.html', context)
     

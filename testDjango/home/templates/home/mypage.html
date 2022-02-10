@@ -16,11 +16,11 @@
 		{% if login_session %}
 		<a href="{% url 'home:mypage' %}"><button>마이페이지</button></a>
 		<a href="{% url 'user:logout' %}"><button>로그아웃</button></a>
-		{% else %}
+		<div style="border: 1px black solid; margin: 20px 0px"></div>
+		{{ user_image }} {% else %}
 		<a href="{% url 'user:login' %}"><button>로그인</button></a>
 		<a href="{% url 'user:register' %}"><button>회원가입</button></a>
-		{% endif %}
 		<div style="border: 1px black solid; margin: 20px 0px"></div>
-		{% block contents %} {% endblock contents %}
+		{% endif %} {% block contents %} {% endblock contents %}
 	</body>
 </html>
