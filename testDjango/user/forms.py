@@ -91,7 +91,6 @@ class RegisterForm(forms.ModelForm):
         model = User
         fields = [
             'user_image',
-            'user_image',
             'user_id',
             'user_pw',
             'user_name',
