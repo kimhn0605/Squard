@@ -15,10 +15,11 @@ def register(request):
         if register_form.is_valid():
             user = User(
                 user_image = register_form.user_image,
+                user_color = register_form.user_color,
                 user_id = register_form.user_id,
                 user_pw = register_form.user_pw,
                 user_name = register_form.user_name,
-                user_email = register_form.user_email
+                user_email = register_form.user_email,
             )
             user.save()
             return redirect('/')

@@ -12,9 +12,26 @@ class RegisterForm(forms.ModelForm):
                 'placeholder' : '프로필 사진'
             }
         ),
-        error_messages={
-        'unique' : '이미지를 선택해주세요.'}
     )
+    
+    options = (
+        ('Yellow', '황토색'),
+        ('Green', '초록색'),
+        ('Red', '빨간색')
+    )
+            
+    user_color = forms.ChoiceField(
+        label='폰트 색깔',
+        required=True,
+        widget=forms.Select(
+            attrs={
+                'class' : 'user-color',
+                'placeholder' : '폰트 색깔'
+            }    
+        ),
+        choices=options,
+    ) 
+    
     user_id = forms.CharField(
         label='아이디',
         required=True,
@@ -84,7 +101,8 @@ class RegisterForm(forms.ModelForm):
         'user_pw',
         'user_pw_confirm',
         'user_name',
-        'user_email'
+        'user_email',
+        'user_color'
     ]
 
     class Meta:
@@ -94,19 +112,21 @@ class RegisterForm(forms.ModelForm):
             'user_id',
             'user_pw',
             'user_name',
-            'user_email'
+            'user_email',
+            'user_color'
         ]
         
     def clean(self):
         cleaned_data = super().clean()
 
         user_image = cleaned_data.get('user_image', '')
+        user_color = cleaned_data.get('user_color', '')
         user_id = cleaned_data.get('user_id', '')
         user_pw = cleaned_data.get('user_pw', '')
         user_pw_confirm = cleaned_data.get('user_pw_confirm', '')
         user_name = cleaned_data.get('user_name', '')
         user_email = cleaned_data.get('user_email', '')
-
+        
         if user_pw != user_pw_confirm:
             return self.add_error('user_pw_confirm', '비밀번호가 다릅니다.')
         elif not (4 <= len(user_id) <= 16):
@@ -120,6 +140,7 @@ class RegisterForm(forms.ModelForm):
             self.user_pw_confirm = user_pw_confirm
             self.user_name = user_name
             self.user_email = user_email
+            self.user_color = user_color
 
 
 class LoginForm(forms.Form):

@@ -9,6 +9,7 @@ class UserAdmin(admin.ModelAdmin):
         # 'user_pw',
         'user_name',
         'user_email',
+        'user_color',
         'user_register_dttm'
     )
 
@@ -18,6 +19,7 @@ class UserAdmin(admin.ModelAdmin):
         # 'user_pw',
         'user_name',
         # 'user_email',
+        'user_color',
         'user_register_dttm'
     )
     
