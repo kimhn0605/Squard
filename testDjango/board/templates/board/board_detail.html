@@ -6,13 +6,18 @@
 <a href="/board/detail/{{ board.id }}/modify/"><button>수정</button></a>
 <a href="/board/detail/{{ board.id }}/delete/"><button>삭제</button></a>
 {% endif %}
-
-<div>게시판 종류 : {{ board.board_name }}</div>
-<div>
-	<img src="{{ user.user_image.url }}" /> | 작성자 : {{ board.writer }} <br />
-	작성일 : {{ board.write_dttm }} | 조회수 : {{ board.hits }}
-</div>
-<div>제목 : {{ board.title }}</div>
-<div>내용 : {{ board.contents|safe }}</div>
+<h2>
+	<div>게시판 종류 : {{ board.board_name }}</div>
+	<div>
+		작성자 :
+		<img src="{{ user.user_image.url }}" 
+			style="width: 60px; height: 45px; border-radius: 20px; border:1px solid rgba(0,0,0,0.5)" />
+		<h2 style= "display: inline">{{ board.writer }}</h3>
+		<br />
+		작성일 : {{ board.write_dttm }} | 조회수 : {{ board.hits }}
+	</div>
+	<div>제목 : {{ board.title }}</div>
+	<div>내용 : {{ board.contents|safe }}</div>
+</h2>
 
 {% endblock contents %}

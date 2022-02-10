@@ -51,6 +51,10 @@ def login(request):
                     context['error'] = value
         return render(request, 'user/login.html', context)
 
+def mypage(request):
+    user = User.objects.all()
+    context = {'user' : user}
+    return render(request, 'user/mypage.html', context)
 
 def logout(request):
     request.session.flush()

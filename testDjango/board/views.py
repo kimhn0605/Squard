@@ -1,3 +1,4 @@
+from gc import get_objects
 from django.shortcuts import render, redirect
 from .forms import BoardWriteForm
 from .models import Board
@@ -8,13 +9,15 @@ from datetime import date, datetime, timedelta
 from .pagination import pagination
 
 
-def board_list(request):
+def board_list(request) :
     login_session = request.session.get('login_session', '')
+
+    #user = get_object_or_404(User, id=pk)
     context = { 'login_session': login_session }
 
     page = pagination(request, Board)
     context.update(page)
-
+    
     return render(request, 'board/board_list.html', context)
 
 
