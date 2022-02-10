@@ -25,6 +25,9 @@ def board_detail(request, pk):
     board = get_object_or_404(Board, id=pk)
     context['board'] = board
     
+    user = get_object_or_404(User, id=pk)
+    context['user'] = user
+    
     # 글쓴이인지 확인
     if board.writer.user_id == login_session:
         context['writer'] = True
