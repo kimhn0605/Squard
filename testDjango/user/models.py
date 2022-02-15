@@ -9,7 +9,8 @@ class User(models.Model):
     user_email = models.EmailField(max_length=128, unique=True, verbose_name='유저 이메일')
     user_register_dttm = models.DateTimeField(auto_now_add=True, verbose_name='계정 생성시간')
     user_color = models.CharField(max_length=32, default='Yellow', verbose_name='폰트 색깔')
-   
+    user_point = models.IntegerField(default=0, verbose_name='포인트')
+    
     def __str__(self):
         return self.user_name
 

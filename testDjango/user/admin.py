@@ -10,6 +10,7 @@ class UserAdmin(admin.ModelAdmin):
         'user_name',
         'user_email',
         'user_color',
+        'user_point',
         'user_register_dttm'
     )
 

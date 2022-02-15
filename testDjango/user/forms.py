@@ -13,7 +13,6 @@ class RegisterForm(forms.ModelForm):
             }
         ),
     )
-    
     options = (
         ('Yellow', '황토색'),
         ('Green', '초록색'),
